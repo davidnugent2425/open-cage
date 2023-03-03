@@ -2,9 +2,9 @@ name = "open-cage"
 uuid = "cage_f24ce8424507"
 app_uuid = "app_263b254706c8"
 team_uuid = "90bbf085261e"
-debug = true
+debug = false
 dockerfile = "./Dockerfile"
-api_key_auth = true
+api_key_auth = false
 trx_logging = true
 disable_tls_termination = false
 

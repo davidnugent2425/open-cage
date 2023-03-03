@@ -4,6 +4,7 @@ on:
       - .github/workflows/deploy-cage.yml
       - app.py
       - Dockerfile
+      - cage.toml
     branches:
       - main
 
