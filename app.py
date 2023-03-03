@@ -7,15 +7,19 @@ from PIL import Image
 from torchvision import transforms
 import io
 import logging
+import boto3
+import os
 
 app = Flask(__name__)
 
 app.logger.setLevel(logging.INFO)
 
 app.logger.info('downloading pre-trained model')
-# Load the pre-trained model
-model = torch.hub.load('mateuszbuda/brain-segmentation-pytorch', 'unet',
-                    in_channels=3, out_channels=1, init_features=32, pretrained=True)
+
+# Load the model
+s3 = boto3.client('s3', aws_access_key_id=os.environ.get('AWS_ACCESS_KEY_ID'), aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'), region_name='eu-west-1')
+s3.download_file('ev-secret-model-developer-day','tumor-model.pt','./tumor-model.pt')
+model = torch.jit.load('./tumor-model.pt')
 # Set the model to evaluation mode
 model.eval()
 app.logger.info('model downloaded')
