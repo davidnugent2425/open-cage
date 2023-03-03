@@ -4,7 +4,7 @@ FROM python:3.8-slim
 RUN python3 -m venv /opt/venv
 # install the requirements to the virtual environment
 COPY requirements.txt requirements.txt
-RUN /opt/venv/bin/pip install -r requirements.txt
+RUN /opt/venv/bin/pip install -r requirements.txt -f https://download.pytorch.org/whl/torch_stable.html
 
 COPY app.py /app.py
 
