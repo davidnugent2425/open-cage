@@ -1,0 +1,25 @@
+on:
+  push:
+    paths:
+      - .github/workflows/deploy-cage.yml
+      - app.py
+      - Dockerfile
+    branches:
+      - main
+
+name: Deploy Cage
+jobs:
+  deploy-cage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy Cage
+        env:
+          EV_API_KEY: ${{ secrets.EV_API_KEY }}
+          EV_CERT: ${{ secrets.EV_CERT }}
+          EV_KEY: ${{ secrets.EV_KEY }}
+        run: |
+          sh <(curl https://cage-build-assets.evervault.com/cli/install -sL)
+          echo "$EV_CERT" > cert.pem
+          echo "$EV_KEY" > key.pem
+          ev-cage deploy

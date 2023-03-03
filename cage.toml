@@ -1,0 +1,23 @@
+name = "open-cage"
+uuid = "cage_f24ce8424507"
+app_uuid = "app_263b254706c8"
+team_uuid = "90bbf085261e"
+debug = true
+dockerfile = "./Dockerfile"
+api_key_auth = true
+trx_logging = true
+disable_tls_termination = false
+
+[egress]
+enabled = true
+
+[signing]
+certPath = "./cert.pem"
+keyPath = "./key.pem"
+
+[attestation]
+HashAlgorithm = "Sha384 { ... }"
+PCR0 = "04fbb3275d99bd52ee52121fba1f656ef2a37e273a1975687ae0f521c8537ab56bbb5a0b8d76b509bce34709d8d5fc50"
+PCR1 = "bcdf05fefccaa8e55bf2c8d6dee9e79bbff31e34bf28a99aa19e6b29c37ee80b214a414b7607236edf26fcb78654e63f"
+PCR2 = "086dbaeabc5cef8723620057cc482acf138d05c1a7fc08096e4e53ff56dbbfb0763ba19aceebd329bc061adb6cb054a5"
+PCR8 = "7eda3ae5d2c373f7fdcdc5d9791f847000f233a96a11bd935133284c20a9457fd53bcc428e77af07b2832f1cb4175a91"
